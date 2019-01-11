@@ -32,6 +32,7 @@ group :test do
   gem 'minitest', '5.10.3'
   gem 'minitest-reporters', '1.1.14'
   gem 'chromedriver-helper'
+  gem 'rails-controller-testing', '1.0.2'
 end
 
 group :production do
