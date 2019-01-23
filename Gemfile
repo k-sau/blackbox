@@ -5,6 +5,7 @@ ruby '2.6.0'
 
 gem 'rails', '~> 5.2.2'
 gem 'bcrypt', '3.1.12'
+gem 'jquery-rails', '~> 4.3'
 gem 'bootstrap-sass', '3.3.7'
 gem 'puma', '~> 3.11'
 gem 'sass-rails', '~> 5.0'
