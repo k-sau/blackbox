@@ -1,0 +1,4 @@
+blackbox_sbx:
+  name: Kumar Saurabh
+  email: sbx@kumar.ninja
+  password_digest: <%= User.digest('password') %>
