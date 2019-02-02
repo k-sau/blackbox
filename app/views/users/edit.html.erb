@@ -34,8 +34,18 @@
                     <h5 class="text-muted">Requires Google Authenticator</h5>
                 </div>
                 <div id="security" class="pull-right">
-                    <button type="button" class="btn btn-success">Success</button>
+                    <%= form_for(:twoFA, url: two_factor_auth_path) do |f| %>
+                        <% if @user.encrypted_2fa_secret.nil? %>
+                        
+                            <%= f.hidden_field :twoFA_auth, value: "on" %>  
+                            <%= f.hidden_field :twoFA_userId, value: @user.id %>                          
+                            <%= f.submit "Turn on", class: "btn btn-danger twoFA_twoFA_auth" %>
+                        <% else %>
+                            <button type="button" class="btn btn-success">Enabled</button>
+                        <% end %>
+                    <% end %>
                 </div>
+                <hr class="style1">
             </div>
         </div>
 
