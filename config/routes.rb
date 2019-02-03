@@ -11,5 +11,6 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   post '/two_factor_auth', to: 'two_factor_auth#new'
+  post '/two_factor_auth_verify', to: 'two_factor_auth#create'
   resources :users
 end
