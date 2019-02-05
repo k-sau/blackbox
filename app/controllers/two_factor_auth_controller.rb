@@ -26,9 +26,8 @@ class TwoFactorAuthController < ApplicationController
       $global_secret_2fa = nil
       @user = User.find_by(id: params[:twoFA][:twoFA_userId])
       @user.update_attribute(:encrypted_2fa_secret, encrypted_data)
-      @user.save
-      flash.now[:success] = "Two factor authentication setup was successful."
-      redirect_to user_url(@user)
+    else
+      render :status => 403 
     end
   end
 end
