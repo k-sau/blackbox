@@ -30,4 +30,11 @@ class TwoFactorAuthController < ApplicationController
       render :status => 403 
     end
   end
+
+  def verify
+    @user = User.find_by(id: params[:id])
+    if @user.two_factor_state != params[:state]
+      redirect_to login_url
+    end
+  end
 end

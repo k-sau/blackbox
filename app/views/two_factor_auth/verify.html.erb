@@ -1,0 +1,11 @@
+<% provide(:title, "Two factor authentication check") %>
+
+<div class="row">
+    <aside class="col-md-4">
+    <h3>Enter two factor authentication OTP</h3>
+        <%= form_for(:twoFA, url: two_factor_auth_path) do |f| %><%= f.hidden_field :twoFA_auth, value: "on" %>  
+            <%= f.hidden_field :twoFA_userId, value: @user.id %>                          
+            <%= f.submit "Turn on", class: "btn btn-danger twoFA_twoFA_auth" %>
+        <% end %>
+    </aside>
+</div>

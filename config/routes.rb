@@ -12,5 +12,6 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   post '/two_factor_auth', to: 'two_factor_auth#new'
   post '/two_factor_auth_verify', to: 'two_factor_auth#create'
+  get '/two_factor_login_verify', to: 'two_factor_auth#verify'
   resources :users
 end
