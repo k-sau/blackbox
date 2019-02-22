@@ -37,4 +37,25 @@ class TwoFactorAuthController < ApplicationController
       redirect_to login_url
     end
   end
+
+  # Definition for verify action POST request
+  def verify_post
+    user = User.find_by(id: params[:otp][:twoFA_userId])
+    key = ActiveSupport::KeyGenerator.new('blackbox').generate_key(Rails.application.credentials.dig(:salt_2fa), 32)
+    crypt = ActiveSupport::MessageEncryptor.new(key)
+    secret = crypt.decrypt_and_verify(user.encrypted_2fa_secret)
+    totp = ROTP::TOTP.new(secret)
+    secret = nil
+    crypt = nil
+    key = nil
+    if params[:otp][:otp] == totp.now()
+      # Destroying 2fa state
+      user.update_attribute(:two_factor_state, nil)
+      log_in user
+      flash[:success] = "Login was successful, Welcome! ~Mr. Robot"
+      redirect_to user_url(user)
+    else
+      redirect_to controller: 'two_factor_auth', action: 'verify', id: user.id, state: user.two_factor_state
+    end
+  end
 end

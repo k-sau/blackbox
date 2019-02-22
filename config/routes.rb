@@ -13,5 +13,6 @@ Rails.application.routes.draw do
   post '/two_factor_auth', to: 'two_factor_auth#new'
   post '/two_factor_auth_verify', to: 'two_factor_auth#create'
   get '/two_factor_login_verify', to: 'two_factor_auth#verify'
+  post '/two_factor_login_verify', to: 'two_factor_auth#verify_post'
   resources :users
 end
