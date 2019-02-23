@@ -39,9 +39,11 @@
                         
                             <%= f.hidden_field :twoFA_auth, value: "on" %>  
                             <%= f.hidden_field :twoFA_userId, value: @user.id %>                          
-                            <%= f.submit "Turn on", class: "btn btn-danger twoFA_twoFA_auth" %>
+                            <%= f.submit "Turn on", class: "btn btn-success twoFA_twoFA_auth" %>
                         <% else %>
-                            <button type="button" class="btn btn-success">Enabled</button>
+                            <%= f.hidden_field :twoFA_auth, value: "off" %>  
+                            <%= f.hidden_field :twoFA_userId, value: @user.id %>                          
+                            <%= f.submit "Turn off", class: "btn btn-danger twoFA_twoFA_auth" %>
                         <% end %>
                     <% end %>
                 </div>

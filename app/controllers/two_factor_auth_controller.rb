@@ -11,8 +11,10 @@ class TwoFactorAuthController < ApplicationController
       totp = nil
       @qr = RQRCode::QRCode.new(qr_link)
       @qr = @qr.as_png(size: 400)
-    else
-      # Disable 2fa
+    elsif params[:twoFA][:twoFA_auth] == "off"
+      @user = User.find_by(id: params[:twoFA][:twoFA_userId])
+      @user.update_attribute(:encrypted_2fa_secret, nil)
+      redirect_to user_url(@user)
     end
   end
 
